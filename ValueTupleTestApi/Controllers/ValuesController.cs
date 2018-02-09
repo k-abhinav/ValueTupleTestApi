@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Swashbuckle.Examples;
 using Swashbuckle.Swagger.Annotations;
 
 namespace ValueTupleTestApi.Controllers
 {
+    [RoutePrefix("api/values")]
     public class ValuesController : ApiController
     {
         // GET api/values
@@ -18,12 +20,17 @@ namespace ValueTupleTestApi.Controllers
         }
 
         // GET api/values/5
-        [SwaggerOperation("GetById")]
-        [SwaggerResponse(HttpStatusCode.OK)]
-        [SwaggerResponse(HttpStatusCode.NotFound)]
-        public string Get(int id)
+        //[SwaggerOperation("GetById", Tags = new string[] { "Tag1"})]
+        //[SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Country>))]
+        //[SwaggerResponse(HttpStatusCode.BadRequest, Type = typeof(ErrorResource))]
+        //[SwaggerResponseExample(HttpStatusCode.OK, typeof(CountryExamples))]
+        //[SwaggerResponseRemoveDefaults]
+
+        //[SwaggerRequestExample(typeof(Country), typeof(CountryExamples))]
+
+        public HttpResponseMessage PostCountry([FromBody]Country country)
         {
-            return "value";
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         // POST api/values
@@ -47,6 +54,12 @@ namespace ValueTupleTestApi.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public void Delete(int id)
         {
+        }
+
+        [Route("GetDataReturn")]
+        public HttpResponseMessage GetData()
+        {
+            return Request.CreateResponse(HttpStatusCode.Accepted);
         }
     }
 }
