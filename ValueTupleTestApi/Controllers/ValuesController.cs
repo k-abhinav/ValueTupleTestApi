@@ -14,9 +14,11 @@ namespace ValueTupleTestApi.Controllers
     {
         // GET api/values
         [SwaggerOperation("GetAll")]
-        public IEnumerable<string> Get()
+        public (int id, string name, string prefix) Get()
         {
-            return new string[] { "value1", "value2" };
+            var c = new Country();
+            var returnData = c.ReturnAllData();
+            return (returnData.id, returnData.name, returnData.prefix);
         }
 
         // GET api/values/5

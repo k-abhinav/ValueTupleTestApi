@@ -9,8 +9,8 @@ namespace ValueTupleTestApi
         {
             return new List<Country>
             {
-                new Country { Prefix = "AA", Name = "Test Country" },
-                new Country { Prefix = "BB", Name = "And another" }
+                new Country { Id = 123, Prefix = "AA", Name = "Test Country" },
+                new Country { Id = 321, Prefix = "BB", Name = "And another" }
             };
         }
     }
